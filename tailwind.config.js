@@ -4,24 +4,19 @@ export default {
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-
-  // ✅ Dark mode will work using class="dark"
   darkMode: "class",
-
   theme: {
     extend: {
-      // ✅ Google Font
-      fontFamily: {
-        pacifico: ["Pacifico", "cursive"],
+      keyframes: {
+        "move-line": {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(100%)" },
+        },
       },
-
-      // (Optional) custom colors for portfolio
-      colors: {
-        primary: "#10b981", // emerald-500
-        darkBg: "#020617",  // slate-950
+      animation: {
+        "move-line": "move-line 2s linear infinite",
       },
     },
   },
-
   plugins: [],
 };

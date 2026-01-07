@@ -51,7 +51,7 @@ const Home = () => {
   };
 
   return (
-    <div className="rounded-md min-h-screen bg-black text-white font-sans selection:bg-white selection:text-black flex flex-col justify-center px-8 md:px-20 relative overflow-hidden">
+    <div className="rounded-xl min-h-screen relative z-10 text-white font-sans selection:bg-white selection:text-black flex flex-col justify-center px-8 md:px-20 relative overflow-hidden">
 
       {/* Background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">

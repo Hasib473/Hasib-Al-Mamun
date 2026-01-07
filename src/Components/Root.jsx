@@ -1,36 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import { Outlet } from 'react-router';
-import Hero from './Hero';
 import HeroLeft from './Heroleft';
+import Footer from './Footer';
+import VantaBackground from './VantaBackground';
+
+
 
 const Root = () => {
-    const [darkMode, setDarkMode] = useState(false);
 
-    const theme = darkMode
-        ? {
-            navBg: "bg-gray-900",
-            border: "border-gray-700",
-            textSecondary: "text-gray-300",
-            hover: "hover:text-white",
-            bgSecondary: "bg-gray-800",
-        }
-        : {
-            navBg: "bg-gray-100",
-            border: "border-gray-200",
-            textSecondary: "text-gray-700",
-            hover: "hover:text-emerald-600",
-            bgSecondary: "bg-white",
-        };
+    const [isLoading, setIsLoading] = useState(true); // Preloader state
 
+
+    // Simulate initial loading (2 sec) or replace with real data fetching
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000); // 2 seconds
+        return () => clearTimeout(timer);
+    }, []);
+
+    // If loading, show preloader
+    if (isLoading) {
+        return (
+            <div className="w-screen h-screen flex items-center justify-center bg-black text-white">
+                {/* Spinner */}
+                <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-white"></div>
+            </div>
+        );
+    }
+
+    // Main content after loader
     return (
-        <div>
-            <Navbar
-                theme={theme}
-                darkMode={darkMode}
-                setDarkMode={setDarkMode}
-            />
-            <div className="grid grid-cols-10 gap-4 w-11/12 mx-auto pt-28">
+
+        <div className='pt-4'>
+
+            <VantaBackground />
+
+            {/* Overlay for text readability */}
+            <div className="fixed inset-0 bg-black/50 -z-0" />
+
+
+            <Navbar />
+
+            <div className="grid grid-cols-10 gap-4 w-11/12 mx-auto relative z-10 pt-10">
                 {/* Left Sidebar (3 parts) */}
                 <div className="col-span-3 p-4 ">
                     <HeroLeft />
@@ -42,10 +55,9 @@ const Root = () => {
                 </div>
             </div>
 
-
+            <Footer />
 
         </div>
-
     );
 };
 
