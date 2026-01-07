@@ -1,20 +1,21 @@
 // components/Navbar.jsx
-import { Contact, House, Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { NavLink } from "react-router";
 
-const Navbar = ({ darkMode, setDarkMode }) => {
+const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
 
   const navLinks = [
-    { label: <House />, href: "#home" },
-    { label: "Projects", href: "#projects" },
-    { label: "Skills", href: "#skills" },
-    { label: "About", href: "#about" },
-    { label: <Contact />, href: "#contact" },
+    { label: "Home", to: "/" },
+    { label: "Projects", to: "/projects" },
+    { label: "Skills", to: "/skills" },
+    { label: "About", to: "/about" },
+    { label: "Contact", to: "/contact" },
   ];
 
   return (
-    <nav className="top-4 relative z-10 border-1 border-white w-11/12 mx-auto rounded-xl shadow">
+    <nav className="relative z-10 border border-white/20 w-11/12 mx-auto rounded-xl shadow backdrop-blur">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
 
@@ -30,30 +31,39 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
           {/* Logo / Name */}
           <div className="flex-1 text-2xl font-bold flex justify-center sm:justify-start">
-            
-              Hasib Al Mamun
-            
+            Hasib Al Mamun
           </div>
 
-          {/* Desktop Menu Links */}
+          {/* Desktop Menu */}
           <div className="hidden sm:flex sm:items-center sm:gap-6">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-gray-300 hover:text-white transition-colors"
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) =>
+                  `relative transition-all duration-300 ${
+                    isActive
+                      ? " border-b-2 border-emerald-500 text-emerald-500  font-semibold"
+                      : "text-gray-300 hover:text-white"
+                  }`
+                }
               >
-                {link.label}
-              </a>
+                {({ isActive }) => (
+                  <>
+                    {link.label}
+                    {/* underline */}
+                    <span
+                      className={`absolute left-0 -bottom-1 h-[2px]  duration-300 ${
+                        isActive ? "w-full" : "w-0"
+                      }`}
+                    />
+                  </>
+                )}
+              </NavLink>
             ))}
 
-            {/* Dark Mode Toggle */}
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-lg hover:text-white transition-all transform hover:scale-110 text-2xl"
-              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              {darkMode ? (<Sun color="orange" />) : (<Moon color="orange" />)}
+            <button className="border border-white/30 px-4 py-1.5 rounded-lg hover:bg-white hover:text-black transition">
+              CV
             </button>
           </div>
         </div>
@@ -61,22 +71,26 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
       {/* Mobile Menu */}
       {openMenu && (
-        <div className="sm:hidden bg-gray-900 border-t border-gray-700">
+        <div className="sm:hidden bg-black/90 border-t border-white/10">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
+            <NavLink
+              key={link.to}
+              to={link.to}
               onClick={() => setOpenMenu(false)}
-              className="block px-4 py-3 text-gray-300 hover:text-white transition-colors"
+              className={({ isActive }) =>
+                `block px-4 py-3 transition-colors ${
+                  isActive
+                    ? "text-emerald-500 bg-white/5"
+                    : "text-gray-300 hover:text-white"
+                }`
+              }
             >
               {link.label}
-            </a>
+            </NavLink>
           ))}
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="w-full text-left px-4 py-3 text-gray-300 hover:text-white transition-colors"
-          >
-            {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+
+          <button className="m-4 border border-white/30 px-4 py-2 rounded-lg text-white hover:bg-white hover:text-black transition">
+            CV
           </button>
         </div>
       )}

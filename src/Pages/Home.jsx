@@ -66,7 +66,8 @@ const Home = () => {
       {/* Main Content */}
       <div className="max-w-4xl z-10">
         <h1 className="text-5xl md:text-7xl font-medium leading-[1.1] mb-8 tracking-tight">
-        I'm a <br/> Web Developer
+        I'm a <br/> <span className="text-emerald-500
+        ">Web Devloper</span>
         </h1>
         <div className="max-w-lg mb-12">
           <p className="text-gray-400 text-lg leading-relaxed">
