@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router";
 
 const Home = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -18,8 +19,6 @@ const Home = () => {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
-
-          // Use OpenStreetMap Nominatim API to get city name
           try {
             const res = await fetch(
               `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
@@ -31,9 +30,7 @@ const Home = () => {
             setLocation("Unknown Location");
           }
         },
-        (error) => {
-          setLocation("Location Denied");
-        }
+        () => setLocation("Location Denied")
       );
     } else {
       setLocation("Geolocation Not Supported");
@@ -50,42 +47,54 @@ const Home = () => {
     return `${hours}:${minutesStr} ${ampm}`;
   };
 
+  
+
   return (
     <div className="rounded-xl min-h-screen relative z-10 text-white font-sans selection:bg-white selection:text-black flex flex-col justify-center px-8 md:px-20 relative overflow-hidden">
 
-      {/* Background */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-gradient-to-br from-gray-700 to-transparent rounded-full blur-3xl"></div>
+      {/* Background shapes */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-gradient-to-br from-gray-900 to-transparent rounded-full blur-3xl animate-pulseSlow"></div>
+        <div className="absolute bottom-[-15%] left-[-10%] w-[400px] h-[400px] bg-gradient-to-tr from-emerald-500/30 to-transparent rounded-full blur-3xl animate-pulseSlow delay-2000"></div>
       </div>
 
       {/* Dynamic Location + Time */}
-      <div className="absolute top-10 left-8 md:left-20 text-sm text-gray-400 tracking-widest uppercase">
+      <div className="absolute top-10 left-8 md:left-150 text-sm text-gray-400 tracking-widest uppercase">
         {location} {formatTime(currentTime)}
       </div>
 
       {/* Main Content */}
       <div className="max-w-4xl z-10">
-        <h1 className="text-5xl md:text-7xl font-medium leading-[1.1] mb-8 tracking-tight">
-        I'm a <br/> <span className="text-emerald-500
-        ">Web Devloper</span>
+        <h1 className="text-5xl md:text-7xl font-medium leading-[1.1] mb-6 tracking-tight">
+          I'm <br />Hasib Al Mamun <br />
+          <span className="text-emerald-500 text-4xl">Web Developer</span>
         </h1>
+
         <div className="max-w-lg mb-12">
           <p className="text-gray-400 text-lg leading-relaxed">
             I build responsive, user-friendly websites and web applications that are fast, elegant, and easy to use. I turn ideas into seamless digital experiences.
-
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        {/* Skill Buttons */}
+        <div className="flex flex-wrap gap-3 mb-8">
           {['React.js', 'Tailwind CSS', 'MERN Stack', 'Responsive Design'].map((tag) => (
             <button 
               key={tag}
-              className="px-6 py-2.5 border border-gray-800 rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300 text-sm text-gray-300"
+              className="px-6 py-2.5 border border-gray-800 rounded-full bg-white/5 hover:bg-emerald-500/20 transition-all duration-300 text-sm text-gray-300 hover:text-white"
             >
               {tag}
             </button>
           ))}
         </div>
+
+        {/* Explore My Work Button */}
+       <NavLink
+  to="/projects"
+  className="inline-block px-8 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+>
+  Explore My Work
+</NavLink>
       </div>
     </div>
   );
