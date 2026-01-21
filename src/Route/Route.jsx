@@ -28,10 +28,13 @@ export const router = createBrowserRouter([
         path:"/contact",
         Component: Contact
       },
+      
+    ]
+    },
+    
       {
         path:"/projects",
         Component: Projects
       }
-    ]
-    }
+    
 ])

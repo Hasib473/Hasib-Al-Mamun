@@ -39,29 +39,41 @@ const HeroLeft = () => {
                 </p>
             </div>
 
-            {/* Social icons */}
-            <div className="flex justify-center gap-4 mb-6">
-                {[Twitter, Github, Linkedin].map((Icon, i) => (
-                    <motion.div
-                        key={i}
-                        whileHover={{ scale: 1.2, backgroundColor: "#0096FF", borderColor: "#0000A3" }}
-                        className="w-10 cursor-pointer h-10 rounded-full border border-gray-600 
-                       flex items-center justify-center transition-colors duration-300"
-                    >
-                        <Icon size={18} />
-                    </motion.div>
-                ))}
-            </div>
+           {/* Social icons */}
+<div className="flex justify-center gap-4 mb-6">
+  {[
+    { icon: Github, url: "https://github.com/Hasib473" },
+    { icon: Linkedin, url: "https://www.linkedin.com/in/hasib-al-mamun-4229a5317/" },
+  ].map(({ icon: Icon, url }, i) => (
+    <motion.a
+      key={i}
+      href={url}           // link
+      target="_blank"      // new tab
+      rel="noopener noreferrer" // security
+      whileHover={{ scale: 1.2, backgroundColor: "#0096FF", borderColor: "#0000A3" }}
+      className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center cursor-pointer transition-colors duration-300"
+    >
+      <Icon size={18} />
+    </motion.a>
+  ))}
+</div>
+
 
             {/* CTA */}
-           <motion.button
+   <motion.a
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=hasib.gub221@gmail.com&su=Hello&body=Hi%20Hasib"
+  target="_blank"
+  rel="noopener noreferrer"
   whileHover={{ scale: 1.05, opacity: 0.9 }}
   className="w-full flex items-center justify-center gap-2 cursor-pointer border border-white py-3 rounded-xl font-semibold
              text-white transition-all duration-300"
 >
   <CiMail size={20} />
   Hire Me
-</motion.button>
+</motion.a>
+
+
+
 
         </motion.div>
     );

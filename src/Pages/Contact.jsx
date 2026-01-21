@@ -1,9 +1,37 @@
+"use client";
+
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_vahutxt",      // Service ID
+        "template_ug0rn06",      // Template ID
+        form.current,
+        "KvcTwC93M8J0BKYwl"     // Public Key
+      )
+      .then(
+        (result) => {
+          alert("Message sent successfully!");
+          form.current.reset(); // Clear form
+        },
+        (error) => {
+          alert("Failed to send message. Try again.");
+          console.log(error.text);
+        }
+      );
+  };
+
   return (
-    <section className="min-h-screen text-white px-6 md:px-15 ">
+    <section className="min-h-screen text-white px-6 md:px-15">
       
       {/* Header */}
       <motion.div
@@ -41,9 +69,7 @@ const Contact = () => {
             channels below.
           </p>
 
-          {/* Contact Items */}
           <div className="space-y-6">
-
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
                 <Mail className="text-emerald-400" />
@@ -73,12 +99,13 @@ const Contact = () => {
                 <p className="text-gray-200">Bangladesh</p>
               </div>
             </div>
-
           </div>
         </motion.div>
 
         {/* Right: Contact Form */}
         <motion.form
+          ref={form}
+          onSubmit={sendEmail}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -90,7 +117,9 @@ const Contact = () => {
             </label>
             <input
               type="text"
+              name="user_name"
               placeholder="Enter your name"
+              required
               className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-emerald-500"
             />
           </div>
@@ -101,7 +130,9 @@ const Contact = () => {
             </label>
             <input
               type="email"
+              name="user_email"
               placeholder="Enter your email"
+              required
               className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-emerald-500"
             />
           </div>
@@ -111,13 +142,16 @@ const Contact = () => {
               Message
             </label>
             <textarea
+              name="message"
               rows="5"
               placeholder="Write your message..."
+              required
               className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-emerald-500 resize-none"
             ></textarea>
           </div>
 
           <motion.button
+            type="submit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold

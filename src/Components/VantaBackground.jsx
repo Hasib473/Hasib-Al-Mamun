@@ -37,7 +37,7 @@ const VantaNetBackground = () => {
             scale: 1,
             scaleMobile: 1,
             color: 0x215b8b,          // line color
-            backgroundColor: 0x261d33 // background color
+            backgroundColor:0x000000 // background color
           });
         }
       };
