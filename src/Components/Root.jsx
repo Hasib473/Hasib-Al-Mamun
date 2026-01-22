@@ -8,6 +8,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import HomeAbout from './HomeAbout';
 import HomeProjects from './HomeProject';
 import FloatingIcons from './FloatingIcons';
+import Skills from './HomeSkills';
+import WhatsAppFloat from './WhatsAppFloat';
 
 const Root = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -100,11 +102,19 @@ const Root = () => {
           <HomeAbout />
         </section>
 
+          <section className="mt-5 mb-10 border-b-1  w-11/12 mx-auto">
+          <Skills />
+        </section>
+
         <section className="mt-5">
           <HomeProjects />
         </section>
 
+      
+
         <Footer />
+        <WhatsAppFloat />
+
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const HomeAbout = () => {
           transition={{ duration: 0.6 }}
           className="space-y-6"
         >
-          <span className="text-emerald-400 font-semibold tracking-wide">
+          <span className="text-emerald-400 font-semibold tracking-wide text-center">
             ABOUT ME
           </span>
 

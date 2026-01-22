@@ -1,169 +1,166 @@
-"use client";
-
-import { useRef } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
-import emailjs from "@emailjs/browser";
+import { Link } from "react-router";
+import {
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+  FaPaperPlane,
+} from "react-icons/fa";
+import { Home, FolderGit2 } from "lucide-react";
+
+import VantaNetBackground from "../Components/VantaBackground";
+import Footer from "../Components/Footer";
+import WhatsAppFloat from "../Components/WhatsAppFloat";
 
 const Contact = () => {
-  const form = useRef();
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "service_vahutxt",      // Service ID
-        "template_ug0rn06",      // Template ID
-        form.current,
-        "KvcTwC93M8J0BKYwl"     // Public Key
-      )
-      .then(
-        (result) => {
-          alert("Message sent successfully!");
-          form.current.reset(); // Clear form
-        },
-        (error) => {
-          alert("Failed to send message. Try again.");
-          console.log(error.text);
-        }
-      );
-  };
-
   return (
-    <section className="min-h-screen text-white px-6 md:px-15">
-      
-      {/* Header */}
+    <>
+    <section className="min-h-screen px-6 md:px-20 py-20 text-white relative">
+
+      {/* 🔥 Vanta Background */}
+      <VantaNetBackground />
+
+      {/* 🔹 Right Fixed Icon Navigation */}
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-4">
+        <Link
+          to="/"
+          className="group w-11 h-11 flex items-center justify-center
+                     rounded-full bg-emerald-500/15 border border-emerald-400/40
+                     hover:bg-emerald-500 hover:border-emerald-500 transition"
+        >
+          <Home
+            size={20}
+            className="text-emerald-400 group-hover:text-black"
+          />
+        </Link>
+
+        <Link
+          to="/projects"
+          className="group w-11 h-11 flex items-center justify-center
+                     rounded-full bg-emerald-500/15 border border-emerald-400/40
+                     hover:bg-emerald-500 hover:border-emerald-500 transition"
+        >
+          <FolderGit2
+            size={20}
+            className="text-emerald-400 group-hover:text-black"
+          />
+        </Link>
+      </div>
+
+      {/* 🔹 Header */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-16"
+        transition={{ duration: 0.7 }}
+        className="text-center mb-20 relative z-10"
       >
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          Contact <span className="text-emerald-500">Me</span>
+          Get In <span className="text-emerald-400">Touch</span>
         </h1>
-        <p className="text-gray-400 max-w-2xl mx-auto">
-          Have a project in mind, a question, or just want to say hello?  
-          I’d love to hear from you.
+        <p className="text-gray-400 max-w-xl mx-auto text-sm">
+          Let’s talk about your project, ideas, or just say hello 
         </p>
       </motion.div>
 
-      {/* Content */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14">
+      {/* 🔹 Main Content */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 relative z-10">
 
-        {/* Left: Contact Info */}
+        {/* Left Info */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
+          initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="space-y-8"
+          transition={{ duration: 0.7 }}
+          className="space-y-10"
         >
           <h2 className="text-2xl font-semibold text-emerald-400">
-            Get in Touch
+            Contact Information
           </h2>
 
-          <p className="text-gray-300 leading-relaxed">
-            I’m always open to discussing new opportunities, creative ideas,
-            or collaborations. Feel free to reach out through any of the
-            channels below.
-          </p>
-
-          <div className="space-y-6">
+          <div className="space-y-6 text-gray-300">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-                <Mail className="text-emerald-400" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-400">Email</p>
-                <p className="text-gray-200">hasib.gub221@gmail.com</p>
-              </div>
+              <FaEnvelope className="text-emerald-400 text-xl" />
+              <span>hasib.gub221@gmail.com</span>
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-                <Phone className="text-emerald-400" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-400">Phone</p>
-                <p className="text-gray-200">+880 1570265433</p>
-              </div>
+              <FaPhoneAlt className="text-emerald-400 text-xl" />
+              <span>+880 1570265433</span>
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-                <MapPin className="text-emerald-400" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-400">Location</p>
-                <p className="text-gray-200">Bangladesh</p>
-              </div>
+              <FaMapMarkerAlt className="text-emerald-400 text-xl" />
+              <span>Dhaka, Bangladesh</span>
             </div>
           </div>
+
+          <p className="text-gray-400 leading-relaxed">
+            I’m always open to discussing new projects, creative ideas,
+            or opportunities to be part of your vision.
+          </p>
         </motion.div>
 
-        {/* Right: Contact Form */}
+        {/* Right Form */}
         <motion.form
-          ref={form}
-          onSubmit={sendEmail}
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-gray-900/60 border border-white/10 rounded-2xl p-8 shadow-xl space-y-6"
+          transition={{ duration: 0.7 }}
+          className="bg-[#0f172a]/80 backdrop-blur-xl border border-white/10
+                     rounded-2xl p-8 space-y-6 shadow-2xl"
         >
           <div>
-            <label className="block text-sm text-gray-400 mb-2">
+            <label className="block text-sm mb-2 text-gray-300">
               Your Name
             </label>
             <input
               type="text"
-              name="user_name"
-              placeholder="Enter your name"
-              required
-              className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-emerald-500"
+              placeholder="John Doe"
+              className="w-full bg-transparent border border-white/20 rounded-lg px-4 py-3
+                         focus:outline-none focus:border-emerald-400 transition"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-gray-400 mb-2">
-              Your Email
+            <label className="block text-sm mb-2 text-gray-300">
+              Email Address
             </label>
             <input
               type="email"
-              name="user_email"
-              placeholder="Enter your email"
-              required
-              className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-emerald-500"
+              placeholder="example@email.com"
+              className="w-full bg-transparent border border-white/20 rounded-lg px-4 py-3
+                         focus:outline-none focus:border-emerald-400 transition"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-gray-400 mb-2">
+            <label className="block text-sm mb-2 text-gray-300">
               Message
             </label>
             <textarea
-              name="message"
               rows="5"
               placeholder="Write your message..."
-              required
-              className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-emerald-500 resize-none"
-            ></textarea>
+              className="w-full bg-transparent border border-white/20 rounded-lg px-4 py-3
+                         focus:outline-none focus:border-emerald-400 transition resize-none"
+            />
           </div>
 
           <motion.button
-            type="submit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold
-                       bg-gradient-to-r from-emerald-500 to-green-400 text-black"
+            className="w-full flex items-center justify-center gap-3
+                       bg-emerald-500 hover:bg-emerald-600
+                       text-black font-semibold py-3 rounded-lg transition"
           >
-            <Send size={18} />
-            Send Message
+            Send Message <FaPaperPlane />
           </motion.button>
         </motion.form>
-
       </div>
+
+      <WhatsAppFloat />
     </section>
+    <section>
+        <Footer/>
+      </section>
+      </>
   );
 };
 

@@ -10,6 +10,7 @@ import cricketimg from "../assets/cricket.jpg";
 import customer from "../assets/Customer.jpg";
 
 import VantaNetBackground from "../Components/VantaBackground";
+import WhatsAppFloat from "../Components/WhatsAppFloat";
 
 const projects = [
   {
@@ -234,6 +235,7 @@ const Projects = () => {
           </motion.div>
         ))}
       </div>
+      <WhatsAppFloat/>
     </section>
   );
 };
