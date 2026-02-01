@@ -8,6 +8,7 @@ import gameimg from "../assets/game.jpg";
 import emergencyimg from "../assets/emergency.jpg";
 import cricketimg from "../assets/cricket.jpg";
 import customer from "../assets/Customer.jpg";
+import freelancingimg from "../assets/freelancing.jpg";
 
 import VantaNetBackground from "../Components/VantaBackground";
 import WhatsAppFloat from "../Components/WhatsAppFloat";
@@ -21,6 +22,15 @@ const projects = [
     image: gameimg,
     github: "https://github.com/Hasib473/GameStore",
     live: "https://gamestore-bang.surge.sh/",
+  },
+  {
+    title: "Virtal Marketplace for freelancers and services providers",
+    description:
+      "A virtual marketplace for freelancers and service providers to connect with clients.",
+    tech: ["React", "Firebase", "React Router", "Tailwind", "Node.js", "Express.js", "MongoDB"],
+    image: freelancingimg,
+    github: "https://github.com/Hasib473/Freelancing-and-Client-Marketplace-.git",
+    live: "https://freelancer-bd.vercel.app/",
   },
   {
     title: "Dua and Ruqyah",
@@ -70,12 +80,7 @@ const projects = [
 ];
 
 const upcomingProjects = [
-  {
-    title: "Virtual Freelancing Marketplace",
-    description:
-      "A platform to connect freelancers and clients with AI-based recommendations and real-time tracking.",
-    tech: ["React", "Node.js", "MongoDB", "Tailwind"],
-  },
+ 
   {
     title: "Regional Language Translator",
     description:
